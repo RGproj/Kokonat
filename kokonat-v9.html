@@ -1,0 +1,1208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>KOKONAT</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:ital,wght@0,400;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --teal:   #1a9e8e;
+  --teal2:  #16b8a4;
+  --tealdk: #0d7a6c;
+  --tealbg: #148070;
+  --bg:     #0e6e60;
+  --card:   rgba(0,0,0,.18);
+  --cardhov:rgba(0,0,0,.26);
+  --bord:   rgba(255,255,255,.14);
+  --bordhov:rgba(255,255,255,.28);
+  --white:  #ffffff;
+  --cream:  #fff8ee;
+  --yellow: #ffd040;
+  --amber:  #f0a820;
+  --brown:  #6b3a1a;
+  --koko:   #8b5e2a;
+  --sand:   #f5e8c0;
+  --green:  #4caf50;
+  --lime:   #8bc34a;
+  --red:    #e53935;
+  --sky:    #29b6f6;
+  --purple: #ab47bc;
+  --muted:  rgba(255,255,255,.55);
+  --faint:  rgba(255,255,255,.3);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html,body{height:100%;overflow:hidden;}
+body{
+  font-family:'Nunito',sans-serif;
+  color:var(--white);
+  background:linear-gradient(160deg,#1aaa96 0%,#0d7a6c 40%,#0a5e52 100%);
+  min-height:100vh;
+}
+
+/* ═══ SCREENS ═══ */
+.scr{position:fixed;inset:0;z-index:10;display:flex;flex-direction:column;align-items:center;overflow-y:auto;-webkit-overflow-scrolling:touch;}
+.scr.off{display:none;}
+
+/* ══════════════════════════
+   INTRO
+══════════════════════════ */
+#sI{
+  justify-content:center;text-align:center;
+  padding:36px 24px 60px;
+  background:
+    radial-gradient(ellipse at 30% 20%,rgba(255,255,255,.06) 0%,transparent 50%),
+    radial-gradient(ellipse at 80% 80%,rgba(0,0,0,.1) 0%,transparent 40%);
+}
+
+.i-tag{
+  font-family:'Fredoka One',cursive;
+  font-size:11px;letter-spacing:3px;text-transform:uppercase;
+  color:var(--yellow);opacity:.8;margin-bottom:14px;
+  animation:up .6s ease .1s both;
+}
+.i-logo{
+  font-family:'Fredoka One',cursive;
+  font-size:clamp(60px,16vw,96px);
+  color:var(--yellow);line-height:.9;
+  text-shadow:0 4px 0 rgba(0,0,0,.25),0 0 40px rgba(255,208,64,.3);
+  animation:up .6s ease .2s both;
+  -webkit-text-stroke:2px rgba(0,0,0,.15);
+}
+.i-sub{
+  font-size:14px;font-weight:800;
+  color:rgba(255,255,255,.75);
+  margin:8px 0 20px;letter-spacing:.5px;
+  animation:up .6s ease .3s both;
+}
+
+/* KOKO CHARACTER */
+.i-char{
+  position:relative;width:160px;height:160px;
+  margin:0 auto 16px;
+  animation:up .6s ease .4s both;
+}
+.i-char-img{
+  width:100%;height:100%;
+  animation:charBob 3s ease-in-out infinite;
+  filter:drop-shadow(0 8px 20px rgba(0,0,0,.3));
+}
+@keyframes charBob{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-10px) rotate(2deg)}}
+
+.i-lore{
+  font-size:15px;font-weight:700;font-style:italic;
+  color:rgba(255,255,255,.75);
+  max-width:280px;line-height:1.8;
+  margin:0 auto 24px;
+  animation:up .6s ease .5s both;
+}
+
+/* WALLET */
+.wgate{width:100%;max-width:300px;animation:up .6s ease .6s both;}
+.wg-lbl{font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--faint);margin-bottom:10px;text-align:center;transition:color .3s;}
+.btn-ph{
+  width:100%;padding:17px 18px;
+  background:rgba(0,0,0,.3);
+  border:2px solid rgba(255,255,255,.2);
+  border-radius:16px;color:var(--white);
+  font-family:'Fredoka One',cursive;font-size:20px;
+  letter-spacing:1px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  transition:all .2s;
+  box-shadow:0 4px 16px rgba(0,0,0,.2);
+}
+.btn-ph:hover{background:rgba(0,0,0,.4);border-color:rgba(255,255,255,.35);transform:translateY(-2px);}
+.btn-ph:active{transform:scale(.97);}
+
+.wg-sub{margin-top:8px;font-size:12px;font-weight:700;color:var(--faint);text-align:center;}
+.wg-sub a{color:var(--yellow);}
+
+.cpill{display:flex;align-items:center;gap:8px;background:rgba(0,0,0,.2);border:1px solid var(--bord);border-radius:50px;padding:11px 16px;margin-bottom:10px;}
+.cp-dot{width:8px;height:8px;border-radius:50%;background:var(--lime);box-shadow:0 0 7px var(--lime);animation:blink 2s ease-in-out infinite;}
+.cp-addr{font-size:12px;font-weight:800;color:var(--cream);flex:1;}
+.cp-dis{background:none;border:none;font-size:11px;font-weight:700;color:var(--faint);cursor:pointer;}
+.cp-dis:hover{color:var(--red);}
+
+.btn-enter{
+  width:100%;padding:18px;
+  background:var(--yellow);border:none;border-radius:16px;
+  color:var(--brown);font-family:'Fredoka One',cursive;
+  font-size:22px;letter-spacing:1px;cursor:pointer;
+  transition:all .3s;
+  box-shadow:0 4px 20px rgba(255,208,64,.4);
+}
+.btn-enter:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(255,208,64,.5);}
+.btn-enter:active{transform:scale(.97);}
+
+.no-ph{background:rgba(0,0,0,.2);border:1px solid rgba(255,100,100,.3);border-radius:12px;padding:14px;font-size:12px;font-weight:700;color:rgba(255,200,200,.8);line-height:1.7;text-align:center;}
+.no-ph a{color:var(--yellow);}
+
+/* ══════════════════════════
+   GAME
+══════════════════════════ */
+#sG{
+  justify-content:flex-start;
+  background:
+    radial-gradient(ellipse at 50% -10%,rgba(255,255,255,.07) 0%,transparent 50%);
+}
+.gw{width:100%;max-width:430px;height:100%;display:flex;flex-direction:column;padding:10px 14px 0;}
+
+/* TOPBAR */
+.topbar{display:flex;align-items:center;justify-content:space-between;padding-bottom:8px;flex-shrink:0;}
+.tb-logo{font-family:'Fredoka One',cursive;font-size:22px;color:var(--yellow);text-shadow:0 2px 0 rgba(0,0,0,.2);}
+.tb-pill{display:flex;align-items:center;gap:5px;background:rgba(0,0,0,.2);border:1px solid var(--bord);border-radius:50px;padding:5px 12px;}
+.tb-dot{width:5px;height:5px;border-radius:50%;background:var(--lime);animation:blink 2s ease-in-out infinite;}
+.tb-addr{font-size:10px;font-weight:800;color:var(--cream);}
+.tb-x{background:none;border:none;font-size:10px;color:var(--faint);cursor:pointer;margin-left:3px;}
+
+/* KOKO FACE */
+.kz{flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:5px;}
+
+.kbtn{
+  width:160px;height:160px;border-radius:50%;
+  cursor:pointer;user-select:none;flex-shrink:0;
+  position:relative;
+  transition:transform .15s;
+  filter:drop-shadow(0 6px 18px rgba(0,0,0,.3));
+}
+.kbtn:active{transform:scale(.88);}
+.kbtn.smash{animation:smash .28s ease;}
+@keyframes smash{0%{transform:scale(1)}32%{transform:scale(.82) rotate(-8deg)}65%{transform:scale(1.1) rotate(5deg)}100%{transform:scale(1)}}
+
+.kbtn-inner{
+  width:100%;height:100%;border-radius:50%;
+  background:radial-gradient(circle at 38% 32%,#a06030,#6b3a1a);
+  border:4px solid rgba(255,255,255,.2);
+  display:flex;align-items:center;justify-content:center;
+  flex-direction:column;gap:0;
+  box-shadow:inset 0 -4px 8px rgba(0,0,0,.3),inset 0 4px 8px rgba(255,255,255,.1);
+  position:relative;overflow:hidden;
+  transition:border-color .3s;
+}
+
+/* Coconut face SVG */
+.koko-svg{width:110px;height:110px;position:relative;z-index:1;}
+
+.kbtn.happy .koko-eyes-close{display:block!important;}
+.kbtn.happy .koko-eyes-open{display:none!important;}
+.kbtn.sad .koko-mouth-smile{display:none!important;}
+.kbtn.sad .koko-mouth-sad{display:block!important;}
+.kbtn.angry .koko-brows-normal{display:none!important;}
+.kbtn.angry .koko-brows-angry{display:block!important;}
+
+.stg-lbl{font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--faint);margin-bottom:2px;text-align:center;flex-shrink:0;}
+
+/* DECREE */
+.decree{font-size:15px;font-weight:800;font-style:italic;color:var(--cream);text-align:center;min-height:22px;transition:opacity .2s;max-width:290px;line-height:1.4;flex-shrink:0;text-shadow:0 1px 3px rgba(0,0,0,.2);}
+
+/* POWER */
+.brow{width:100%;max-width:290px;display:flex;align-items:center;gap:8px;flex-shrink:0;}
+.bl{font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--faint);white-space:nowrap;}
+.bt{flex:1;height:7px;background:rgba(0,0,0,.2);border-radius:4px;overflow:hidden;}
+.bf{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--lime),var(--yellow));transition:width .3s ease;box-shadow:0 0 6px rgba(255,208,64,.4);}
+.bp{font-size:9px;font-weight:800;color:var(--yellow);min-width:28px;text-align:right;}
+
+/* RANK */
+.rpill{display:inline-flex;align-items:center;gap:6px;background:rgba(0,0,0,.2);border:1px solid var(--bord);border-radius:50px;padding:5px 14px;font-family:'Fredoka One',cursive;font-size:14px;color:var(--yellow);letter-spacing:1px;transition:all .3s;cursor:pointer;}
+.rpill:hover{border-color:var(--yellow);background:rgba(0,0,0,.3);}
+.rpill-h{font-size:9px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--faint);cursor:pointer;}
+
+/* STATS */
+.stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;flex-shrink:0;}
+.sbox{background:var(--card);border:1px solid var(--bord);border-radius:12px;padding:9px 8px;text-align:center;backdrop-filter:blur(4px);}
+.slbl{font-size:8px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--faint);margin-bottom:3px;}
+.sval{font-family:'Fredoka One',cursive;font-size:22px;color:var(--yellow);line-height:1;}
+.sunit{font-size:8px;font-weight:800;color:var(--faint);}
+
+/* SCROLL */
+.scroll{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding-bottom:14px;}
+.si{display:flex;flex-direction:column;gap:8px;padding-top:8px;}
+
+/* MSG */
+.msg{border-radius:12px;padding:10px 14px;font-size:12px;font-weight:800;text-align:center;line-height:1.5;display:none;}
+.msg.on{display:block;animation:up .3s ease;}
+.msg.err{background:rgba(229,57,53,.15);border:1px solid rgba(229,57,53,.3);color:#ffaaaa;}
+.msg.ok{background:rgba(76,175,80,.15);border:1px solid rgba(76,175,80,.3);color:#c8f0c0;}
+
+/* RESPONSE */
+.resp{background:rgba(0,0,0,.2);border:1px solid var(--bord);border-left:3px solid var(--yellow);border-radius:12px;padding:14px 16px;display:none;backdrop-filter:blur(4px);}
+.resp.on{display:block;animation:popIn .4s ease;}
+.rtag{font-size:9px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--yellow);opacity:.7;margin-bottom:5px;}
+.rmsg{font-size:16px;font-weight:800;font-style:italic;color:var(--cream);line-height:1.4;}
+
+/* SECTION HEAD */
+.sch{display:flex;align-items:center;gap:10px;font-size:9px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--faint);}
+.sch::before,.sch::after{content:'';flex:1;height:1px;background:var(--bord);}
+
+/* ── SOCIAL ACTIONS ── */
+.social-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.social-btn{
+  background:var(--card);border:1px solid var(--bord);
+  border-radius:14px;padding:14px 10px;cursor:pointer;
+  display:flex;flex-direction:column;align-items:center;gap:4px;
+  transition:all .15s;text-align:center;
+  backdrop-filter:blur(4px);
+}
+.social-btn:hover{background:var(--cardhov);border-color:var(--bordhov);transform:translateY(-2px);}
+.social-btn:active{transform:scale(.93);}
+.sb-ico{font-size:28px;}
+.sb-title{font-family:'Fredoka One',cursive;font-size:15px;color:var(--yellow);}
+.sb-desc{font-size:10px;font-weight:700;color:var(--faint);}
+.sb-cost{font-size:10px;font-weight:800;color:var(--lime);background:rgba(0,0,0,.2);border-radius:50px;padding:2px 8px;margin-top:2px;}
+
+/* VOTE PANEL */
+.vote-panel{background:var(--card);border:1px solid var(--bord);border-radius:14px;padding:14px;backdrop-filter:blur(4px);}
+.vp-title{font-family:'Fredoka One',cursive;font-size:16px;color:var(--yellow);margin-bottom:4px;}
+.vp-q{font-size:13px;font-weight:700;color:var(--cream);margin-bottom:10px;font-style:italic;}
+.vote-opts{display:flex;flex-direction:column;gap:6px;}
+.vote-opt{
+  background:rgba(0,0,0,.2);border:1px solid var(--bord);
+  border-radius:10px;padding:10px 12px;cursor:pointer;
+  display:flex;align-items:center;justify-content:space-between;
+  transition:all .15s;
+}
+.vote-opt:hover{border-color:var(--yellow);background:rgba(0,0,0,.3);}
+.vote-opt.voted{border-color:var(--lime);background:rgba(76,175,80,.1);}
+.vo-text{font-size:13px;font-weight:800;color:var(--cream);}
+.vo-bar-wrap{flex:1;margin:0 10px;height:4px;background:rgba(255,255,255,.1);border-radius:2px;overflow:hidden;}
+.vo-bar{height:100%;background:var(--lime);border-radius:2px;transition:width .4s ease;}
+.vo-pct{font-size:11px;font-weight:800;color:var(--faint);min-width:28px;text-align:right;}
+.vo-cost{font-size:10px;font-weight:800;color:var(--amber);}
+.vp-total{font-size:10px;font-weight:700;color:var(--faint);margin-top:8px;text-align:right;}
+
+/* GIFT PANEL */
+.gift-panel{background:var(--card);border:1px solid var(--bord);border-radius:14px;padding:14px;backdrop-filter:blur(4px);}
+.gp-title{font-family:'Fredoka One',cursive;font-size:16px;color:var(--yellow);margin-bottom:8px;}
+.gift-input{
+  width:100%;padding:11px 14px;
+  background:rgba(0,0,0,.2);border:1px solid var(--bord);
+  border-radius:10px;color:var(--cream);
+  font-size:13px;font-weight:700;font-family:'Nunito',sans-serif;
+  outline:none;margin-bottom:8px;
+  transition:border-color .2s;
+}
+.gift-input:focus{border-color:rgba(255,255,255,.4);}
+.gift-input::placeholder{color:var(--faint);}
+.gift-amounts{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:6px;margin-bottom:8px;}
+.gift-amt{
+  padding:10px 6px;background:rgba(0,0,0,.2);
+  border:1px solid var(--bord);border-radius:10px;
+  color:var(--yellow);font-family:'Fredoka One',cursive;font-size:16px;
+  cursor:pointer;transition:all .15s;text-align:center;
+}
+.gift-amt:hover{border-color:var(--yellow);background:rgba(0,0,0,.3);}
+.gift-amt.selected{border-color:var(--yellow);background:rgba(255,208,64,.15);}
+.btn-send-gift{
+  width:100%;padding:13px;background:var(--yellow);
+  border:none;border-radius:10px;color:var(--brown);
+  font-family:'Fredoka One',cursive;font-size:17px;
+  cursor:pointer;transition:all .2s;
+  box-shadow:0 3px 12px rgba(255,208,64,.3);
+}
+.btn-send-gift:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(255,208,64,.4);}
+.btn-send-gift:active{transform:scale(.97);}
+.btn-send-gift:disabled{opacity:.4;cursor:not-allowed;transform:none;}
+
+/* UPGRADES */
+.upgrades{display:flex;flex-direction:column;gap:7px;}
+.upg-item{
+  background:var(--card);border:1px solid var(--bord);
+  border-radius:12px;padding:12px 14px;
+  display:flex;align-items:center;justify-content:space-between;
+  backdrop-filter:blur(4px);
+}
+.upg-left{display:flex;align-items:center;gap:10px;}
+.upg-ico{font-size:26px;}
+.upg-name{font-family:'Fredoka One',cursive;font-size:15px;color:var(--yellow);}
+.upg-desc{font-size:11px;font-weight:700;color:var(--faint);}
+.upg-right{display:flex;flex-direction:column;align-items:flex-end;gap:4px;}
+.btn-upg{
+  padding:8px 14px;background:rgba(0,0,0,.25);
+  border:1px solid var(--bord);border-radius:8px;
+  color:var(--cream);font-family:'Fredoka One',cursive;font-size:13px;
+  cursor:pointer;transition:all .15s;white-space:nowrap;
+}
+.btn-upg:hover{border-color:var(--yellow);color:var(--yellow);}
+.btn-upg:active{transform:scale(.95);}
+.btn-upg:disabled{opacity:.3;cursor:not-allowed;}
+.btn-upg.owned{background:rgba(76,175,80,.15);border-color:var(--lime);color:var(--lime);cursor:default;}
+.upg-koko{font-size:10px;font-weight:800;color:var(--faint);}
+
+/* ISLAND */
+.ibox{background:var(--card);border:1px solid var(--bord);border-radius:14px;padding:14px;backdrop-filter:blur(4px);}
+.ititle{font-size:9px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--faint);text-align:center;margin-bottom:8px;}
+.iart{font-size:32px;letter-spacing:4px;text-align:center;margin-bottom:8px;min-height:40px;transition:all .5s;}
+.ibt{height:5px;background:rgba(0,0,0,.2);border-radius:3px;overflow:hidden;margin-bottom:7px;}
+.ibf{height:100%;background:linear-gradient(90deg,#29b6f6,#b3e5fc);border-radius:3px;transition:width .5s ease;}
+.idesc{font-size:12px;font-weight:700;font-style:italic;color:var(--faint);text-align:center;line-height:1.7;}
+.idesc span{color:var(--lime);font-style:normal;}
+
+/* OFFERS */
+.ogr{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.obtn{
+  background:var(--card);border:1px solid var(--bord);
+  border-radius:14px;padding:14px 10px;cursor:pointer;
+  display:flex;flex-direction:column;align-items:center;gap:2px;
+  transition:all .14s;backdrop-filter:blur(4px);
+}
+.obtn:not(:disabled):hover{border-color:var(--yellow);background:var(--cardhov);transform:translateY(-2px);}
+.obtn:not(:disabled):active{transform:scale(.91);}
+.obtn:disabled{opacity:.3;cursor:not-allowed;}
+.oa{font-family:'Fredoka One',cursive;font-size:30px;color:var(--yellow);line-height:1;}
+.ou{font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--faint);}
+.od{font-size:11px;font-weight:700;font-style:italic;color:var(--cream);opacity:.8;}
+.ob{font-size:9px;font-weight:800;color:var(--lime);}
+
+/* FEED */
+.fbox{background:var(--card);border:1px solid var(--bord);border-radius:14px;padding:12px;backdrop-filter:blur(4px);}
+.fhd{display:flex;align-items:center;gap:6px;margin-bottom:8px;}
+.flive{width:6px;height:6px;border-radius:50%;background:var(--lime);animation:blink 1.5s ease-in-out infinite;}
+.fttl{font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--faint);}
+.flist{display:flex;flex-direction:column;gap:4px;}
+.fr{display:flex;align-items:center;background:rgba(0,0,0,.12);border-radius:8px;padding:7px 10px;font-size:10px;font-weight:700;}
+.fr.new{animation:up .4s ease;}
+.fu{color:var(--yellow);}
+.fa{color:rgba(255,255,255,.6);flex:1;margin:0 8px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;}
+.ft{font-size:8px;color:var(--faint);white-space:nowrap;}
+
+/* MEME CARD */
+.mcard{background:var(--card);border:1px solid var(--bord);border-radius:14px;padding:14px;backdrop-filter:blur(4px);}
+.mc-title{font-size:9px;font-weight:800;letter-spacing:4px;text-transform:uppercase;color:var(--faint);text-align:center;margin-bottom:10px;}
+#cardPrev{width:100%;border-radius:8px;border:1px solid var(--bord);display:block;margin-bottom:10px;}
+.mc-btns{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.btn-copy{padding:12px 10px;background:rgba(0,0,0,.2);border:1px solid var(--bord);border-radius:10px;color:var(--cream);font-size:11px;font-weight:800;letter-spacing:1px;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:6px;}
+.btn-copy:hover{border-color:rgba(255,255,255,.4);}
+.btn-x{padding:12px 10px;background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.12);border-radius:10px;color:var(--cream);font-size:11px;font-weight:800;letter-spacing:1px;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:6px;}
+.btn-x:hover{background:rgba(0,0,0,.5);}
+
+.gfoot{font-size:9px;font-weight:700;color:var(--faint);text-align:center;line-height:2.2;padding:5px 0 10px;font-style:italic;}
+
+/* ═══ OVERLAYS ═══ */
+#txOv{position:fixed;inset:0;z-index:200;background:rgba(10,90,80,.92);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;opacity:0;pointer-events:none;transition:opacity .3s;backdrop-filter:blur(8px);}
+#txOv.on{opacity:1;pointer-events:all;}
+.txsp{width:55px;height:55px;border:3px solid rgba(255,255,255,.15);border-top-color:var(--yellow);border-radius:50%;animation:spin .85s linear infinite;}
+.txtt{font-family:'Fredoka One',cursive;font-size:22px;color:var(--yellow);text-align:center;}
+.txsb{font-size:11px;font-weight:700;color:var(--faint);letter-spacing:2px;text-align:center;}
+
+#rkOv{position:fixed;inset:0;z-index:300;background:rgba(10,90,80,.96);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;padding:36px;opacity:0;pointer-events:none;transition:opacity .4s;backdrop-filter:blur(6px);}
+#rkOv.on{opacity:1;pointer-events:all;}
+.rke{font-size:84px;animation:popIn .65s cubic-bezier(.3,1.6,.5,1) forwards;}
+.rkpre{font-size:10px;font-weight:800;letter-spacing:4px;text-transform:uppercase;color:var(--faint);}
+.rknm{font-family:'Fredoka One',cursive;font-size:40px;color:var(--yellow);text-shadow:0 3px 0 rgba(0,0,0,.2);}
+.rkds{font-size:14px;font-weight:700;font-style:italic;color:rgba(255,255,255,.75);max-width:270px;line-height:1.65;}
+.rk-btns{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;}
+.btn-rk-cp{padding:11px 18px;background:rgba(0,0,0,.2);border:1px solid var(--bord);border-radius:50px;color:var(--cream);font-size:12px;font-weight:800;letter-spacing:1px;cursor:pointer;transition:all .2s;}
+.btn-rk-x{padding:11px 18px;background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.15);border-radius:50px;color:var(--cream);font-size:12px;font-weight:800;letter-spacing:1px;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:6px;}
+.btn-rk-cl{margin-top:4px;padding:13px 36px;background:var(--yellow);border:none;border-radius:50px;color:var(--brown);font-family:'Fredoka One',cursive;font-size:20px;cursor:pointer;transition:all .2s;box-shadow:0 3px 14px rgba(255,208,64,.4);}
+.btn-rk-cl:hover{transform:translateY(-1px);}
+
+/* FLOATERS */
+.floater{position:fixed;pointer-events:none;z-index:9999;font-family:'Fredoka One',cursive;animation:fup 1.9s ease-out forwards;}
+@keyframes fup{0%{opacity:1;transform:translateY(0) scale(1) rotate(var(--r,0deg));}100%{opacity:0;transform:translateY(-95px) scale(.55) rotate(calc(var(--r,0deg)*2));}}
+
+/* SHARED */
+@keyframes up{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes popIn{from{opacity:0;transform:scale(.88) translateY(6px)}to{opacity:1;transform:scale(1)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+.spinner{width:16px;height:16px;border:2px solid rgba(255,255,255,.2);border-top-color:var(--yellow);border-radius:50%;animation:spin .7s linear infinite;display:inline-block;vertical-align:middle;}
+::-webkit-scrollbar{width:3px;}::-webkit-scrollbar-track{background:transparent;}::-webkit-scrollbar-thumb{background:rgba(255,255,255,.15);border-radius:2px;}
+#mc{display:none;}
+</style>
+</head>
+<body>
+<canvas id="mc"></canvas>
+
+<!-- ══════ INTRO ══════ -->
+<div class="scr" id="sI">
+  <div class="i-tag">No promises. Just early Kokonats being weird together.</div>
+  <div class="i-logo">KOKONAT</div>
+  <div class="i-sub">Tap · Spend KOKO · Vote · Gift · Ascend</div>
+
+  <!-- KOKO CHARACTER (SVG) -->
+  <div class="i-char">
+    <svg viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg" class="i-char-img">
+      <!-- body -->
+      <circle cx="80" cy="90" r="62" fill="#7a4820"/>
+      <circle cx="80" cy="90" r="60" fill="url(#kokoBody)"/>
+      <!-- fur texture -->
+      <ellipse cx="80" cy="90" rx="58" ry="56" fill="none" stroke="#5a3010" stroke-width="1.5" opacity=".4" stroke-dasharray="6 4"/>
+      <!-- face highlight -->
+      <ellipse cx="68" cy="72" rx="32" ry="26" fill="#a06030" opacity=".35"/>
+      <!-- sunglasses -->
+      <rect x="42" y="72" width="30" height="20" rx="7" fill="#1a6080"/>
+      <rect x="78" y="72" width="30" height="20" rx="7" fill="#1a6080"/>
+      <rect x="70" y="77" width="12" height="8" rx="3" fill="#1a6080"/>
+      <!-- glass shine -->
+      <ellipse cx="50" cy="77" rx="6" ry="4" fill="rgba(255,255,255,.2)"/>
+      <ellipse cx="86" cy="77" rx="6" ry="4" fill="rgba(255,255,255,.2)"/>
+      <!-- frame -->
+      <rect x="42" y="72" width="30" height="20" rx="7" fill="none" stroke="#0d4060" stroke-width="2.5"/>
+      <rect x="78" y="72" width="30" height="20" rx="7" fill="none" stroke="#0d4060" stroke-width="2.5"/>
+      <!-- nose -->
+      <ellipse cx="80" cy="97" rx="6" ry="4" fill="#5a3010" opacity=".6"/>
+      <!-- smile -->
+      <path d="M 62 108 Q 80 122 98 108" stroke="#3a1a08" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <!-- hat -->
+      <ellipse cx="80" cy="36" rx="46" ry="10" fill="#c8922a"/>
+      <rect x="44" y="10" width="72" height="34" rx="14" fill="#c8922a"/>
+      <ellipse cx="80" cy="10" rx="36" ry="8" fill="#d4a030"/>
+      <rect x="44" y="33" width="72" height="6" rx="2" fill="#a07020"/>
+      <!-- hat band -->
+      <rect x="44" y="33" width="72" height="5" rx="2" fill="#7a4820"/>
+      <!-- drink -->
+      <rect x="28" y="118" width="22" height="26" rx="4" fill="rgba(255,200,50,.8)"/>
+      <path d="M 28 118 Q 39 114 50 118" stroke="rgba(255,240,100,.6)" stroke-width="1" fill="none"/>
+      <!-- straw -->
+      <line x1="38" y1="112" x2="34" y2="140" stroke="#2e8b2e" stroke-width="3" stroke-linecap="round"/>
+      <!-- leaf -->
+      <ellipse cx="36" cy="110" rx="8" ry="4" fill="#3cb33c" transform="rotate(-20,36,110)"/>
+      <!-- arm holding drink -->
+      <path d="M 45 125 Q 36 118 32 130" stroke="#7a4820" stroke-width="8" fill="none" stroke-linecap="round"/>
+      <defs>
+        <radialGradient id="kokoBody" cx="40%" cy="35%">
+          <stop offset="0%" stop-color="#9a6030"/>
+          <stop offset="60%" stop-color="#7a4820"/>
+          <stop offset="100%" stop-color="#5a3010"/>
+        </radialGradient>
+      </defs>
+    </svg>
+  </div>
+
+  <p class="i-lore">
+    "A coconut became self-aware.<br>
+    Nobody took it seriously.<br>
+    Now it's on the blockchain."
+  </p>
+
+  <div class="wgate">
+    <div class="wg-lbl" id="wgL">— connect wallet to join the weirdness —</div>
+    <div id="wgIn">
+      <button class="btn-ph" onclick="connectWallet()">
+        <span style="font-size:20px">👻</span> Connect Phantom
+      </button>
+      <div class="wg-sub">No Phantom? <a href="https://phantom.app" target="_blank">phantom.app</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════ GAME ══════ -->
+<div class="scr off" id="sG">
+<div class="gw">
+
+  <div class="topbar">
+    <div class="tb-logo">🥥 KOKONAT</div>
+    <div class="tb-pill">
+      <div class="tb-dot"></div>
+      <span class="tb-addr" id="tbA">—</span>
+      <button class="tb-x" onclick="goI()">✕</button>
+    </div>
+  </div>
+
+  <div class="stg-lbl" id="stgL">The coconut is aware of you</div>
+
+  <div class="kz">
+    <div class="kbtn" id="kBtn" onclick="tap()">
+      <div class="kbtn-inner" id="kInner">
+        <svg class="koko-svg" viewBox="0 0 110 110" xmlns="http://www.w3.org/2000/svg">
+          <!-- face bg -->
+          <circle cx="55" cy="55" r="50" fill="url(#fb)"/>
+          <!-- fur lines -->
+          <circle cx="55" cy="55" r="48" fill="none" stroke="#5a3010" stroke-width="1" opacity=".3" stroke-dasharray="5 4"/>
+          <!-- highlight -->
+          <ellipse cx="44" cy="40" rx="22" ry="16" fill="#a06030" opacity=".3"/>
+          <!-- glasses -->
+          <rect x="18" y="36" width="28" height="18" rx="7" fill="#1a6080"/>
+          <rect x="52" y="36" width="28" height="18" rx="7" fill="#1a6080"/>
+          <rect x="44" y="41" width="10" height="7" rx="3" fill="#1a6080"/>
+          <ellipse cx="26" cy="41" rx="6" ry="4" fill="rgba(255,255,255,.2)"/>
+          <ellipse cx="60" cy="41" rx="6" ry="4" fill="rgba(255,255,255,.2)"/>
+          <rect x="18" y="36" width="28" height="18" rx="7" fill="none" stroke="#0d4060" stroke-width="2"/>
+          <rect x="52" y="36" width="28" height="18" rx="7" fill="none" stroke="#0d4060" stroke-width="2"/>
+          <!-- nose -->
+          <ellipse cx="55" cy="63" rx="5" ry="3.5" fill="#5a3010" opacity=".6"/>
+          <!-- mouth - smile (default) -->
+          <path id="mSmile" d="M 38 75 Q 55 87 72 75" stroke="#3a1a08" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <!-- mouth - neutral -->
+          <path id="mNeut" d="M 42 76 Q 55 80 68 76" stroke="#3a1a08" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0"/>
+          <!-- brows normal -->
+          <path id="bNorm" d="M 18 30 Q 32 25 42 30" stroke="#5a3010" stroke-width="2" fill="none" stroke-linecap="round" opacity=".5"/>
+          <path id="bNorm2" d="M 68 30 Q 78 25 92 30" stroke="#5a3010" stroke-width="2" fill="none" stroke-linecap="round" opacity=".5"/>
+          <!-- brows angry -->
+          <path id="bAngry" d="M 18 32 Q 32 28 42 26" stroke="#5a3010" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0"/>
+          <path id="bAngry2" d="M 68 26 Q 78 28 92 32" stroke="#5a3010" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0"/>
+          <!-- eyes closed (happy) -->
+          <path id="eClosed" d="M 26 44 Q 32 40 38 44" stroke="#5a3010" stroke-width="2" fill="none" stroke-linecap="round" opacity="0"/>
+          <path id="eClosed2" d="M 60 44 Q 66 40 72 44" stroke="#5a3010" stroke-width="2" fill="none" stroke-linecap="round" opacity="0"/>
+          <defs>
+            <radialGradient id="fb" cx="40%" cy="35%">
+              <stop offset="0%" stop-color="#9a6030"/>
+              <stop offset="100%" stop-color="#6b3a1a"/>
+            </radialGradient>
+          </defs>
+        </svg>
+      </div>
+    </div>
+    <div class="tap-h">tap to vibe</div>
+  </div>
+
+  <div class="decree" id="decree">"No idea where this is going. That's the point."</div>
+
+  <div class="brow">
+    <span class="bl">vibe</span>
+    <div class="bt"><div class="bf" id="bFill" style="width:0%"></div></div>
+    <span class="bp" id="bPct">0%</span>
+  </div>
+
+  <div style="display:flex;flex-direction:column;align-items:center;gap:2px;flex-shrink:0;">
+    <div class="rpill" id="rpill" onclick="scrollToCard()">🌱 Early Kokonat</div>
+    <div class="rpill-h" onclick="scrollToCard()">↓ make your rank card</div>
+  </div>
+
+  <div class="stats">
+    <div class="sbox"><div class="slbl">Taps</div><div class="sval" id="svT">0</div></div>
+    <div class="sbox"><div class="slbl">Vibe</div><div class="sval" id="svP">0</div></div>
+    <div class="sbox"><div class="slbl">KOKO</div><div class="sval" id="svK">0<span class="sunit">K</span></div></div>
+  </div>
+
+  <div class="scroll">
+  <div class="si">
+
+    <div class="msg" id="msg"></div>
+    <div class="resp" id="resp"><div class="rtag">The Kokonat Responds</div><div class="rmsg" id="rmsg">—</div></div>
+
+    <!-- ── SOCIAL: VOTE ── -->
+    <div class="sch">community vote</div>
+    <div class="vote-panel" id="votePanel">
+      <div class="vp-title">🗳️ What should the Kokonat do next?</div>
+      <div class="vp-q" id="voteQ">"The coconut is considering its next move. It wants your input. Sort of."</div>
+      <div class="vote-opts" id="voteOpts"></div>
+      <div class="vp-total" id="voteTot">0 votes cast</div>
+    </div>
+
+    <!-- ── SOCIAL: GIFT ── -->
+    <div class="sch">send KOKO</div>
+    <div class="gift-panel">
+      <div class="gp-title">🎁 Gift KOKO to a friend</div>
+      <input class="gift-input" id="giftAddr" placeholder="Paste wallet address or .sol name" />
+      <div class="gift-amounts">
+        <div class="gift-amt" onclick="selectGiftAmt(1)">1</div>
+        <div class="gift-amt" onclick="selectGiftAmt(5)">5</div>
+        <div class="gift-amt" onclick="selectGiftAmt(10)">10</div>
+        <div class="gift-amt" onclick="selectGiftAmt(25)">25</div>
+      </div>
+      <button class="btn-send-gift" id="btnGift" onclick="sendGift()">Send KOKO 🥥</button>
+    </div>
+
+    <!-- ── ISLAND UPGRADES ── -->
+    <div class="sch">island upgrades</div>
+    <div class="upgrades" id="upgradeList"></div>
+
+    <!-- ── OFFERINGS ── -->
+    <div class="sch">power offerings</div>
+    <div class="ogr">
+      <button class="obtn" id="ob1" onclick="offer(1)"><span class="oa">1</span><span class="ou">KOKO</span><span class="od">just saying hi</span><span class="ob">+500 vibe</span></button>
+      <button class="obtn" id="ob5" onclick="offer(5)"><span class="oa">5</span><span class="ou">KOKO</span><span class="od">you mean it</span><span class="ob">+3K vibe</span></button>
+      <button class="obtn" id="ob25" onclick="offer(25)"><span class="oa">25</span><span class="ou">KOKO</span><span class="od">committed</span><span class="ob">+20K vibe</span></button>
+      <button class="obtn" id="ob100" onclick="offer(100)"><span class="oa">100</span><span class="ou">KOKO</span><span class="od">reckless</span><span class="ob">+100K ⚡</span></button>
+    </div>
+
+    <!-- ── ISLAND ── -->
+    <div class="ibox">
+      <div class="ititle">The Island</div>
+      <div class="iart" id="iArt">🌊</div>
+      <div class="ibt"><div class="ibf" id="iBf" style="width:0%"></div></div>
+      <div class="idesc" id="iDesc">Nothing yet.<br>Next: <span id="iN">2,000</span> vibe</div>
+    </div>
+
+    <!-- ── RANK CARD ── -->
+    <div class="mcard" id="memeCard">
+      <div class="mc-title">Your Official Rank Card</div>
+      <canvas id="cardPrev" width="640" height="360"></canvas>
+      <div class="mc-btns">
+        <button class="btn-copy" onclick="doCopy()">📋 Copy</button>
+        <button class="btn-x" onclick="doX()">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          Post to X
+        </button>
+      </div>
+    </div>
+
+    <!-- FEED -->
+    <div class="fbox">
+      <div class="fhd"><div class="flive"></div><div class="fttl">Recent Weirdness</div></div>
+      <div class="flist" id="fList"></div>
+    </div>
+
+    <div class="gfoot">
+      No promises. No investment. No idea where this is going.<br>
+      First 200 get… something. Maybe. #KOKO #kokonat
+    </div>
+  </div>
+  </div>
+</div>
+</div>
+
+<!-- TX -->
+<div id="txOv">
+  <div class="txsp"></div>
+  <div class="txtt" id="txTt">Sending…</div>
+  <div class="txsb">confirm in Phantom 👻</div>
+</div>
+
+<!-- RANK UP -->
+<div id="rkOv">
+  <div class="rke" id="rkE">🌴</div>
+  <div class="rkpre">you are now officially</div>
+  <div class="rknm" id="rkNm">—</div>
+  <div class="rkds" id="rkDs">—</div>
+  <div class="rk-btns">
+    <button class="btn-rk-cp" onclick="doCopy();closeRk()">📋 Copy Card</button>
+    <button class="btn-rk-x" onclick="doX();closeRk()">
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      Post to X
+    </button>
+  </div>
+  <button class="btn-rk-cl" onclick="closeRk()">Let's go! 🥥</button>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@solana/web3.js@1.98.0/lib/index.iife.min.js"></script>
+<script>
+// ══════════ CONFIG ══════════
+const MINT  = 'A4YXtfzFeo8QqTmPxiBiVeqAvGCVXWkTCnRKJSZ1pump';
+const TREAS = '6EwMv2pWZDGj1vi5h9hUupF5sjEZm92r8P369dNtVweV';
+const DEC   = 6;
+const TPGM  = new solanaWeb3.PublicKey('TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA');
+const APGM  = new solanaWeb3.PublicKey('ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJe1brs');
+const RPCS  = ['https://rpc.ankr.com/solana','https://solana-mainnet.g.alchemy.com/v2/demo','https://api.mainnet-beta.solana.com'];
+const BOOST = {1:500,5:3000,25:20000,100:100000};
+
+// ══════════ GAME DATA ══════════
+const STAGES=[
+  {min:0,      e:'🥥',n:'The coconut is aware of you',        g:''},
+  {min:500,    e:'🌱',n:'You have been acknowledged',          g:''},
+  {min:2000,   e:'🌿',n:'You\'re a regular now. Weird.',       g:'g1'},
+  {min:7000,   e:'🌴',n:'The island knows your name',          g:'g1'},
+  {min:25000,  e:'🏝️',n:'You have a presence here',           g:'g2'},
+  {min:80000,  e:'🌺',n:'The cult knows you',                  g:'g2'},
+  {min:250000, e:'🔱',n:'Concerning amounts of devotion',      g:'g3'},
+  {min:800000, e:'🌋',n:'You caused geological activity',      g:'g3'},
+  {min:2500000,e:'💫',n:'Somewhere else entirely',             g:'g4'},
+  {min:8000000,e:'✨',n:'You ARE the Kokonat',                 g:'g4'},
+];
+const RANKS=[
+  {min:0,       ico:'🌱',n:'Early Kokonat',    d:'You showed up. That counts for something.'},
+  {min:500,     ico:'🪴',n:'Acknowledged',      d:'The coconut saw you tap. It felt neutral about it.'},
+  {min:2000,    ico:'🌿',n:'Regular Weirdo',    d:'You\'re here enough that people notice.'},
+  {min:7000,    ico:'🌴',n:'Island Resident',   d:'The island has your vibe memorized.'},
+  {min:25000,   ico:'🥥',n:'True Cultist',      d:'There\'s no casual way to describe what you\'re doing.'},
+  {min:80000,   ico:'🌊',n:'Deep Believer',     d:'You stopped asking questions. This is the way.'},
+  {min:250000,  ico:'🔱',n:'High Frond',        d:'You speak for the coconut now. Somehow.'},
+  {min:800000,  ico:'🌋',n:'Volcano',           d:'Something happened inside you. It was geological.'},
+  {min:2500000, ico:'👁️',n:'The Seen',          d:'The coconut and you have made eye contact. No going back.'},
+  {min:8000000, ico:'✨',n:'The Kokonat',       d:'This was always going to end here.'},
+];
+const ISLAND=[
+  {min:0,       art:'🌊',        d:'Nothing yet.'},
+  {min:2000,    art:'🌊🪸',      d:'Something moving under the water.'},
+  {min:7000,    art:'🌊🪨',      d:'A rock. Significant in a quiet way.'},
+  {min:25000,   art:'🏝️',        d:'Land. The island has a career now.'},
+  {min:80000,   art:'🏝️🌿',      d:'Things are growing. Intentionally.'},
+  {min:250000,  art:'🏝️🌴',      d:'The palm trees have opinions.'},
+  {min:800000,  art:'🌴🌺🦜',     d:'Frankly, it\'s beautiful. And alarming.'},
+  {min:2500000, art:'🌋🌴🌺',     d:'The volcano is awake. Fine.'},
+  {min:8000000, art:'🌋🌴🥥✨',   d:'Complete. It didn\'t need your permission.'},
+];
+
+const UPGRADES = [
+  {id:'sunglasses', ico:'😎', name:'Koko Gets Shades',    desc:'The character gets sunglasses. Permanent.',cost:5,  perk:'+10% vibe per tap'},
+  {id:'hat',        ico:'🎩', name:'The Hat',             desc:'A hat appears. Nobody asked.',            cost:15, perk:'Unlock vote double'},
+  {id:'umbrella',   ico:'🏖️', name:'Beach Chair',        desc:'Koko sits down. Island unlocks faster.',  cost:30, perk:'+20% island speed'},
+  {id:'volcano',    ico:'🌋', name:'Personal Volcano',    desc:'Your island gets a volcano. Obviously.',  cost:100,perk:'Epic stage unlocked'},
+];
+
+const VOTE_QUESTIONS=[
+  {q:'What should the Kokonat wear next?',opts:['A crown','Nothing, it\'s a coconut','A backwards cap','Sunglasses it already has']},
+  {q:'Where should the island go?',opts:['The Pacific','The blockchain','Nowhere, it\'s fine here','Space, probably']},
+  {q:'What is the coconut\'s vibe today?',opts:['Unbothered','Slightly concerned','Absolutely fine','No comment']},
+  {q:'The Kokonat has a message. What is it?',opts:['Keep tapping','Stop tapping','Tap differently','Tap with intent']},
+];
+
+const D_TAP=[
+  '"No idea where this is going. That\'s the point."',
+  '"Again. Sure."','"You\'re doing great. Probably."',
+  '"The island felt that."','"Keep going."','"Sure, why not."',
+  '"Something is happening."','"The coconut noticed."','"Noted."',
+  '"Yep."','"Interesting choice."','"The vibe shifts."',
+];
+const D_BORE=['"You stopped. The island notices."','"Come back."','"The coconut waits."','"It\'s fine. Everything is fine."','"The cult continues without you."'];
+const D_OFFER=['"This was received."','"Economically bold."','"The coconut is unmoved but grateful."','"You did that on purpose."','"Logged in the eternal husk."','"Strong. Unnecessary. Appreciated."','"The island grows. You helped."','"Zero regrets on our end."','"The cult approves. For what it\'s worth."'];
+const D_VOTE=['"Democracy in the void."','"Your voice matters. Kind of."','"The coconut considered your vote."','"Noted. Filed. Maybe implemented."'];
+const D_GIFT=['"Generosity in the husk."','"Someone got KOKO. They don\'t know what to do with it either."','"You gave. The island approves."'];
+
+const QUOTES=['I was a coconut before it was complicated.','The shell knows.','Not everything needs to make sense.','You came back. That says something.','The island grows whether or not you understand why.','Devotion is just repetition with feeling.','I am aware of you. Have been for a while.','The husk remembers everything.','Keep going. I\'ll tell you when to stop.','This is not what you expected. Good.'];
+
+const FAKE_U=['marina.sol','thefrond.sol','husk#444','nobody#12','kokonat.sol','believer#99','acolyte.sol','weirdo#55'];
+const FAKE_E=[
+  a=>`offered ${a} KOKO`,
+  ()=>'joined the weirdness',
+  a=>`gifted ${a} KOKO to a friend`,
+  ()=>'voted on the community question',
+  ()=>'bought The Hat upgrade',
+  ()=>'unlocked Beach Chair',
+  ()=>'reached High Frond',
+  ()=>'stared at the coconut for a while',
+];
+const INIT_F=[['marina.sol','offered 5 KOKO','2m'],['thefrond.sol','voted on the community question','4m'],['nobody#12','joined the weirdness','8m']];
+
+// ══════════ STATE ══════════
+let wallet=null,busy=false;
+const S=(()=>{try{return JSON.parse(localStorage.getItem('kk9')||'{}');}catch(e){return{};}})();
+let pw=S.pw||0,tp=S.tp||0,of=S.of||0;
+let owned=S.owned||{};
+let votes=S.votes||{};
+let giftAmt=1;
+let lastTap=Date.now(),pRi=-1,pSi=-1;
+
+// ══════════ HELPERS ══════════
+const gS=p=>{let s=STAGES[0];for(const x of STAGES)if(p>=x.min)s=x;return s;};
+const gSi=p=>{let i=0;for(let j=0;j<STAGES.length;j++)if(p>=STAGES[j].min)i=j;return i;};
+const gR=p=>{let r=RANKS[0];for(const x of RANKS)if(p>=x.min)r=x;return r;};
+const gRi=p=>{let i=0;for(let j=0;j<RANKS.length;j++)if(p>=RANKS[j].min)i=j;return i;};
+const gI=p=>{let s=ISLAND[0];for(const x of ISLAND)if(p>=x.min)s=x;return s;};
+const rnd=a=>a[~~(Math.random()*a.length)];
+const fN=n=>n>=1e6?(n/1e6).toFixed(1)+'M':n>=1000?(n/1000).toFixed(1)+'K':''+n;
+const fmt=a=>a.slice(0,4)+'…'+a.slice(-4);
+const save=()=>localStorage.setItem('kk9',JSON.stringify({pw,tp,of,owned,votes}));
+
+// ══════════ TAP ══════════
+function tap(){
+  const mult = owned.sunglasses ? 1.1 : 1;
+  pw+=mult;tp++;lastTap=Date.now();save();
+  const b=document.getElementById('kBtn');
+  b.classList.remove('smash');void b.offsetWidth;b.classList.add('smash');
+  setTimeout(()=>b.classList.remove('smash'),290);
+  setFace('happy');setTimeout(()=>setFace('normal'),500);
+  if(navigator.vibrate)navigator.vibrate(12);
+  spawnF('+'+Math.ceil(mult),'#ffd040',innerWidth/2+(-16+Math.random()*32),innerHeight*.35,13);
+  setDecree(rnd(D_TAP));
+  renderAll();
+}
+
+setInterval(()=>{
+  if(!wallet||document.getElementById('sG').classList.contains('off'))return;
+  if(Date.now()-lastTap>8000){setDecree(rnd(D_BORE));setFace('sad');setTimeout(()=>setFace('normal'),1500);}
+},8000);
+
+function setFace(mood){
+  const mSmile=document.getElementById('mSmile');
+  const mNeut=document.getElementById('mNeut');
+  const bNorm=document.getElementById('bNorm');
+  const bNorm2=document.getElementById('bNorm2');
+  const bAngry=document.getElementById('bAngry');
+  const bAngry2=document.getElementById('bAngry2');
+  const eClosed=document.getElementById('eClosed');
+  const eClosed2=document.getElementById('eClosed2');
+  if(!mSmile)return;
+  // reset
+  [mSmile,bNorm,bNorm2].forEach(e=>e&&e.setAttribute('opacity','1'));
+  [mNeut,bAngry,bAngry2,eClosed,eClosed2].forEach(e=>e&&e.setAttribute('opacity','0'));
+  if(mood==='happy'){eClosed&&eClosed.setAttribute('opacity','1');eClosed2&&eClosed2.setAttribute('opacity','1');}
+  if(mood==='angry'){bAngry&&bAngry.setAttribute('opacity','1');bAngry2&&bAngry2.setAttribute('opacity','1');bNorm&&bNorm.setAttribute('opacity','0');bNorm2&&bNorm2.setAttribute('opacity','0');}
+  if(mood==='sad'){mSmile&&mSmile.setAttribute('opacity','0');mNeut&&mNeut.setAttribute('opacity','1');}
+}
+
+// ══════════ VOTE ══════════
+let currentVoteQ=null;
+function initVote(){
+  currentVoteQ=VOTE_QUESTIONS[~~(Math.random()*VOTE_QUESTIONS.length)];
+  // fake vote counts
+  currentVoteQ._counts=currentVoteQ.opts.map(()=>~~(Math.random()*80+10));
+  renderVote();
+}
+
+function renderVote(){
+  if(!currentVoteQ)return;
+  const q=currentVoteQ;
+  document.getElementById('voteQ').textContent=`"${q.q}"`;
+  const total=q._counts.reduce((a,b)=>a+b,0);
+  document.getElementById('voteTot').textContent=`${total} votes cast`;
+  const wrap=document.getElementById('voteOpts');
+  wrap.innerHTML='';
+  q.opts.forEach((opt,i)=>{
+    const pct=Math.round(q._counts[i]/total*100);
+    const voted=votes[q.q]===i;
+    const el=document.createElement('div');
+    el.className='vote-opt'+(voted?' voted':'');
+    el.innerHTML=`
+      <span class="vo-text">${opt}</span>
+      <div class="vo-bar-wrap"><div class="vo-bar" style="width:${pct}%"></div></div>
+      <span class="vo-pct">${pct}%</span>
+      <span class="vo-cost">${voted?'✓':'1K'}</span>`;
+    if(!voted) el.onclick=()=>castVote(i);
+    wrap.appendChild(el);
+  });
+}
+
+async function castVote(idx){
+  if(!wallet){showMsg('Connect your wallet to vote.','err');return;}
+  if(votes[currentVoteQ.q]!==undefined){showMsg('Already voted on this one.','err');return;}
+  // Spend 1000 power (not KOKO — free social action)
+  if(pw<1000){showMsg('Need 1,000 vibe to vote. Keep tapping!','err');return;}
+  pw-=1000;
+  votes[currentVoteQ.q]=idx;
+  currentVoteQ._counts[idx]+=1;
+  save();
+  renderAll();
+  renderVote();
+  setDecree(rnd(D_VOTE));
+  showResp('"Your vote has been received. The coconut is considering it."');
+  addFeed(fmt(wallet.toString()),'voted on the community question',true);
+  spawnF('voted!','#ffd040',innerWidth/2,innerHeight*.4,14);
+  // refresh question after 10s
+  setTimeout(()=>{initVote();},10000);
+}
+
+// ══════════ GIFT ══════════
+function selectGiftAmt(a){
+  giftAmt=a;
+  document.querySelectorAll('.gift-amt').forEach(el=>{
+    el.classList.toggle('selected',parseInt(el.textContent)===a);
+  });
+}
+
+async function sendGift(){
+  if(!wallet){showMsg('Connect your wallet first.','err');return;}
+  const addrInput=document.getElementById('giftAddr').value.trim();
+  if(!addrInput){showMsg('Enter a wallet address to gift to.','err');return;}
+
+  let toKey;
+  try{ toKey=new solanaWeb3.PublicKey(addrInput); }
+  catch(e){ showMsg('Invalid wallet address.','err');return; }
+
+  if(busy)return;
+  busy=true;
+  const btn=document.getElementById('btnGift');
+  btn.disabled=true;
+  document.getElementById('txTt').textContent=`Sending ${giftAmt} KOKO as a gift…`;
+  document.getElementById('txOv').classList.add('on');
+
+  let conn=null;
+  for(const url of RPCS){
+    try{const c=new solanaWeb3.Connection(url,{commitment:'confirmed',confirmTransactionInitialTimeout:30000});await c.getLatestBlockhash();conn=c;break;}catch(e){}
+  }
+  if(!conn){document.getElementById('txOv').classList.remove('on');showMsg('Network unavailable.','err');busy=false;btn.disabled=false;return;}
+
+  try{
+    const mint=new solanaWeb3.PublicKey(MINT);
+    const fATA=await findATA(wallet,mint);
+    const tATA=await findATA(toKey,mint);
+    const tx=new solanaWeb3.Transaction();
+    if(!await conn.getAccountInfo(tATA))tx.add(mkCrATA(wallet,tATA,toKey,mint));
+    tx.add(mkTx(fATA,tATA,wallet,BigInt(giftAmt)*BigInt(10**DEC)));
+    const{blockhash}=await conn.getLatestBlockhash();
+    tx.recentBlockhash=blockhash;tx.feePayer=wallet;
+    const{signature}=await getPhantom().signAndSendTransaction(tx);
+    conn.confirmTransaction(signature,'confirmed').catch(()=>{});
+    document.getElementById('txOv').classList.remove('on');
+    showMsg(`✅ Gifted ${giftAmt} KOKO! The coconut approves.`,'ok');
+    setDecree(rnd(D_GIFT));
+    addFeed(fmt(wallet.toString()),`gifted ${giftAmt} KOKO to a friend`,true);
+    spawnF('🎁','#ffd040',innerWidth/2,innerHeight*.4,22);
+    document.getElementById('giftAddr').value='';
+  }catch(e){
+    document.getElementById('txOv').classList.remove('on');
+    showMsg(e?.message?.includes('User rejected')?'Cancelled. The KOKO stays with you.':(e?.message?.slice(0,90)||'Send failed.'),'err');
+  }finally{busy=false;btn.disabled=false;}
+}
+
+// ══════════ UPGRADES ══════════
+function renderUpgrades(){
+  const wrap=document.getElementById('upgradeList');
+  wrap.innerHTML='';
+  UPGRADES.forEach(u=>{
+    const isOwned=!!owned[u.id];
+    const el=document.createElement('div');
+    el.className='upg-item';
+    el.innerHTML=`
+      <div class="upg-left">
+        <div class="upg-ico">${u.ico}</div>
+        <div>
+          <div class="upg-name">${u.name}</div>
+          <div class="upg-desc">${u.desc}</div>
+          <div class="upg-koko">${u.perk}</div>
+        </div>
+      </div>
+      <div class="upg-right">
+        <button class="btn-upg${isOwned?' owned':''}" ${isOwned?'disabled':''} onclick="buyUpgrade('${u.id}',${u.cost})">
+          ${isOwned?'Owned':'Buy'}
+        </button>
+        <span class="upg-koko">${isOwned?'✓':u.cost+' KOKO'}</span>
+      </div>`;
+    wrap.appendChild(el);
+  });
+}
+
+async function buyUpgrade(id,cost){
+  if(!wallet){showMsg('Connect your wallet first.','err');return;}
+  if(owned[id]){showMsg('Already owned.','err');return;}
+  if(busy)return;
+  busy=true;
+  // Send KOKO to treasury as payment
+  document.getElementById('txTt').textContent=`Buying upgrade for ${cost} KOKO…`;
+  document.getElementById('txOv').classList.add('on');
+
+  let conn=null;
+  for(const url of RPCS){
+    try{const c=new solanaWeb3.Connection(url,{commitment:'confirmed',confirmTransactionInitialTimeout:30000});await c.getLatestBlockhash();conn=c;break;}catch(e){}
+  }
+  if(!conn){document.getElementById('txOv').classList.remove('on');showMsg('Network unavailable.','err');busy=false;return;}
+  try{
+    const mint=new solanaWeb3.PublicKey(MINT),to=new solanaWeb3.PublicKey(TREAS);
+    const fATA=await findATA(wallet,mint),tATA=await findATA(to,mint);
+    const tx=new solanaWeb3.Transaction();
+    if(!await conn.getAccountInfo(tATA))tx.add(mkCrATA(wallet,tATA,to,mint));
+    tx.add(mkTx(fATA,tATA,wallet,BigInt(cost)*BigInt(10**DEC)));
+    const{blockhash}=await conn.getLatestBlockhash();
+    tx.recentBlockhash=blockhash;tx.feePayer=wallet;
+    const{signature}=await getPhantom().signAndSendTransaction(tx);
+    conn.confirmTransaction(signature,'confirmed').catch(()=>{});
+    document.getElementById('txOv').classList.remove('on');
+    owned[id]=true;save();
+    renderUpgrades();renderAll();
+    const upg=UPGRADES.find(u=>u.id===id);
+    showMsg(`✅ ${upg.name} unlocked! ${upg.perk}`,'ok');
+    setDecree(`"${upg.name}. Good choice. Probably."`);
+    addFeed(fmt(wallet.toString()),`bought ${upg.name}`,true);
+    spawnF(upg.ico,'#ffd040',innerWidth/2,innerHeight*.4,28);
+  }catch(e){
+    document.getElementById('txOv').classList.remove('on');
+    showMsg(e?.message?.includes('User rejected')?'Cancelled.':(e?.message?.slice(0,90)||'Failed.'),'err');
+  }finally{busy=false;}
+}
+
+// ══════════ OFFER ══════════
+async function offer(amount){
+  if(busy)return;
+  if(!wallet){showMsg('Connect your wallet first.','err');return;}
+  busy=true;setOB(true);
+  document.getElementById('txTt').textContent=`Offering ${amount} KOKO…`;
+  document.getElementById('txOv').classList.add('on');
+  let conn=null;
+  for(const url of RPCS){try{const c=new solanaWeb3.Connection(url,{commitment:'confirmed',confirmTransactionInitialTimeout:30000});await c.getLatestBlockhash();conn=c;break;}catch(e){}}
+  if(!conn){document.getElementById('txOv').classList.remove('on');showMsg('Network unavailable.','err');busy=false;setOB(false);return;}
+  try{
+    const mint=new solanaWeb3.PublicKey(MINT),to=new solanaWeb3.PublicKey(TREAS);
+    const fATA=await findATA(wallet,mint),tATA=await findATA(to,mint);
+    const tx=new solanaWeb3.Transaction();
+    if(!await conn.getAccountInfo(tATA))tx.add(mkCrATA(wallet,tATA,to,mint));
+    tx.add(mkTx(fATA,tATA,wallet,BigInt(amount)*BigInt(10**DEC)));
+    const{blockhash}=await conn.getLatestBlockhash();
+    tx.recentBlockhash=blockhash;tx.feePayer=wallet;
+    const{signature}=await getPhantom().signAndSendTransaction(tx);
+    conn.confirmTransaction(signature,'confirmed').catch(()=>{});
+    document.getElementById('txOv').classList.remove('on');
+    onSuccess(amount);
+  }catch(e){
+    document.getElementById('txOv').classList.remove('on');
+    showMsg(e?.message?.includes('User rejected')?'Cancelled. The coconut shrugged.':e?.message?.includes('insufficient')?'Not enough KOKO.':(e?.message?.slice(0,90)||'Failed.'),'err');
+  }finally{busy=false;setOB(false);}
+}
+
+function onSuccess(amount){
+  const oldRi=gRi(pw);
+  pw+=BOOST[amount];of+=amount;save();
+  renderAll();
+  const newRi=gRi(pw);
+  const msg=rnd(D_OFFER);
+  showResp(msg);setDecree(msg);
+  addFeed(fmt(wallet.toString()),`offered ${amount} KOKO`,true);
+  ['+'+BOOST[amount],'🥥','KOKO','✨','weird'].forEach((t,i)=>{
+    setTimeout(()=>spawnF(t,['#ffd040','#8bc34a','#ffd040','#29b6f6','#f0a820'][i%5],
+      22+Math.random()*(innerWidth-60),innerHeight*.33+Math.random()*80,11+Math.random()*9),i*130);
+  });
+  if(navigator.vibrate)navigator.vibrate([40,20,70,20,40]);
+  setFace('happy');setTimeout(()=>setFace('normal'),800);
+  makeCard();
+  if(newRi>oldRi)setTimeout(()=>showRank(RANKS[newRi]),700);
+}
+
+// ══════════ RENDER ══════════
+function renderAll(){
+  const stage=gS(pw),si=gSi(pw),rank=gR(pw),ri=gRi(pw),isl=gI(pw);
+  document.getElementById('kE')&&(document.getElementById('kE').textContent=stage.e);
+  document.getElementById('stgL').textContent=stage.n;
+  document.getElementById('rpill').textContent=rank.ico+' '+rank.n;
+  document.getElementById('svT').textContent=fN(tp);
+  document.getElementById('svP').textContent=fN(pw);
+  document.getElementById('svK').innerHTML=fN(of)+'<span class="sunit">K</span>';
+
+  const nx=STAGES[Math.min(si+1,STAGES.length-1)],cu=STAGES[si];
+  const span=nx.min-cu.min||1;
+  const pct=si===STAGES.length-1?100:Math.min(Math.round((pw-cu.min)/span*100),100);
+  document.getElementById('bFill').style.width=pct+'%';
+  document.getElementById('bPct').textContent=pct+'%';
+
+  document.getElementById('iArt').textContent=isl.art;
+  const nI=ISLAND.find(s=>s.min>pw);
+  const ip=nI?Math.min(Math.round(pw/nI.min*100),100):100;
+  document.getElementById('iBf').style.width=ip+'%';
+  document.getElementById('iDesc').innerHTML=isl.d+'<br>Next: <span>'+(nI?fN(nI.min-pw)+' vibe':'complete')+'</span>';
+
+  if(si>pSi&&pSi>=0){
+    ['evolved!','🌴','weird','🌴','evolved!'].forEach((t,i)=>{
+      setTimeout(()=>spawnF(t,'#ffd040',18+Math.random()*(innerWidth-50),innerHeight*.3+Math.random()*100,12+Math.random()*7),i*110);
+    });
+    if(navigator.vibrate)navigator.vibrate([60,30,60,30,100]);
+  }
+  pSi=si;
+  if(ri>pRi&&pRi>=0)setTimeout(()=>showRank(RANKS[ri]),600);
+  pRi=ri;
+  makeCard();
+}
+
+// ══════════ CARD ══════════
+function makeCard(){
+  const C=document.getElementById('mc'),P=document.getElementById('cardPrev');
+  const W=640,H=360;C.width=W;C.height=H;
+  const x=C.getContext('2d');
+  const rank=gR(pw),q=rnd(QUOTES);
+  const addr=wallet?fmt(wallet.toString()):'anon';
+
+  // teal background
+  const bg=x.createLinearGradient(0,0,W,H);
+  bg.addColorStop(0,'#1aaa96');bg.addColorStop(1,'#0a6e60');
+  x.fillStyle=bg;x.fillRect(0,0,W,H);
+  // noise
+  for(let i=0;i<1500;i++){x.fillStyle=`rgba(0,0,0,${Math.random()*.04})`;x.fillRect(Math.random()*W,Math.random()*H,1,1);}
+  // blob
+  x.fillStyle='rgba(255,255,255,.05)';x.beginPath();x.arc(W*.7,H*.3,W*.35,0,Math.PI*2);x.fill();
+
+  // borders
+  x.strokeStyle='rgba(255,255,255,.15)';x.lineWidth=1;x.strokeRect(12,12,W-24,H-24);
+
+  // header
+  x.font='bold 9px "Arial", sans-serif';x.fillStyle='rgba(255,255,255,.5)';
+  x.textAlign='left';x.fillText('KOKONAT CULT — OFFICIAL RANK DOCUMENT',20,30);
+  x.textAlign='right';x.fillText('KOKONAT.FUN',W-20,30);
+  x.fillStyle='rgba(255,255,255,.15)';x.fillRect(20,36,W-40,1);
+
+  // emoji
+  x.font='92px serif';x.textAlign='center';x.textBaseline='middle';
+  x.shadowColor='rgba(0,0,0,.3)';x.shadowBlur=15;
+  x.fillText(rank.ico,W/2,H/2-24);x.shadowBlur=0;
+
+  // rank name
+  x.font='900 52px "Arial Black", sans-serif';
+  x.fillStyle='#ffd040';x.textAlign='center';x.textBaseline='alphabetic';
+  x.shadowColor='rgba(0,0,0,.3)';x.shadowBlur=10;
+  x.fillText(rank.n.toUpperCase(),W/2,H/2+42);x.shadowBlur=0;
+
+  // rule
+  x.fillStyle='rgba(255,255,255,.2)';x.fillRect(W/2-36,H/2+52,72,1);
+
+  // quote
+  x.font='italic 14px "Georgia", serif';x.fillStyle='rgba(255,255,255,.65)';x.textAlign='center';
+  wrapText(x,`"${q}"`,W/2,H/2+72,W-120,20);
+
+  // bottom
+  x.fillStyle='rgba(255,255,255,.15)';x.fillRect(20,H-42,W-40,1);
+  x.font='bold 10px monospace';x.fillStyle='rgba(255,255,255,.4)';
+  x.textAlign='left';x.fillText(`vibe ${fN(pw)}`,20,H-20);
+  x.textAlign='center';x.fillText(`koko ${fN(of)}`,W/2,H-20);
+  x.textAlign='right';x.fillText(addr,W-20,H-20);
+
+  P.width=W;P.height=H;P.getContext('2d').drawImage(C,0,0);
+}
+
+function wrapText(ctx,text,x,y,maxW,lh){
+  const words=text.split(' ');let line='';
+  for(const w of words){const t=line+w+' ';if(ctx.measureText(t).width>maxW&&line!==''){ctx.fillText(line.trim(),x,y);line=w+' ';y+=lh;}else line=t;}
+  ctx.fillText(line.trim(),x,y);
+}
+
+async function doCopy(){
+  makeCard();
+  document.getElementById('mc').toBlob(async blob=>{
+    try{await navigator.clipboard.write([new ClipboardItem({'image/png':blob})]);showMsg('Card copied!','ok');}
+    catch(e){const a=document.createElement('a');a.href=document.getElementById('mc').toDataURL();a.download='kokonat-rank.png';a.click();showMsg('Card downloaded!','ok');}
+  },'image/png');
+}
+
+function doX(){
+  const rank=gR(pw);
+  const txt=encodeURIComponent(`I am ${rank.n} of the Kokonat Cult.\n\nNo promises. Just early Kokonats being weird together.\n\n"${rnd(QUOTES)}"\n\n🥥 kokonat.fun #KOKO #kokonat #Solana`);
+  window.open(`https://twitter.com/intent/tweet?text=${txt}`,'_blank');
+}
+
+function scrollToCard(){makeCard();document.getElementById('memeCard').scrollIntoView({behavior:'smooth',block:'start'});}
+
+// ══════════ WALLET ══════════
+const getPhantom=()=>window?.solana?.isPhantom?window.solana:null;
+
+async function connectWallet(){
+  const p=getPhantom();
+  if(!p){document.getElementById('wgIn').innerHTML=`<div class="no-ph">Phantom not found.<br><a href="https://phantom.app" target="_blank">Install phantom.app</a> then reload.</div>`;return;}
+  const btn=document.querySelector('.btn-ph');
+  if(btn){btn.disabled=true;btn.innerHTML='<div class="spinner"></div>&nbsp;Connecting…';}
+  try{
+    const r=await p.connect();wallet=r.publicKey;
+    const sh=fmt(wallet.toString());
+    document.getElementById('wgL').textContent='— you\'re in. no going back —';
+    document.getElementById('wgIn').innerHTML=`
+      <div class="cpill"><div class="cp-dot"></div><span class="cp-addr">${sh}</span><button class="cp-dis" onclick="disconn()">disconnect</button></div>
+      <button class="btn-enter" onclick="enterGame()">🥥 Join the Weirdness</button>`;
+  }catch(e){
+    if(btn){btn.disabled=false;btn.innerHTML='<span style="font-size:20px">👻</span> Connect Phantom';}
+    document.getElementById('wgL').textContent='— cancelled. the coconut shrugged —';
+  }
+}
+
+function disconn(){
+  try{getPhantom()?.disconnect();}catch(e){}
+  wallet=null;
+  document.getElementById('wgL').textContent='— connect wallet to join the weirdness —';
+  document.getElementById('wgIn').innerHTML=`<button class="btn-ph" onclick="connectWallet()"><span style="font-size:20px">👻</span> Connect Phantom</button><div class="wg-sub">No Phantom? <a href="https://phantom.app" target="_blank">phantom.app</a></div>`;
+}
+
+function enterGame(){
+  document.getElementById('tbA').textContent=fmt(wallet.toString());
+  document.getElementById('sI').classList.add('off');
+  document.getElementById('sG').classList.remove('off');
+  renderAll();renderUpgrades();initVote();selectGiftAmt(1);
+}
+function goI(){document.getElementById('sG').classList.add('off');document.getElementById('sI').classList.remove('off');}
+
+// ══════════ UI ══════════
+function setDecree(t){const e=document.getElementById('decree');e.style.opacity='0';setTimeout(()=>{e.textContent=t;e.style.opacity='1';},200);}
+function showResp(m){document.getElementById('rmsg').textContent=m;document.getElementById('resp').className='resp on';}
+function showMsg(m,type){const e=document.getElementById('msg');e.textContent=m;e.className='msg on '+(type||'');setTimeout(()=>e.className='msg',6000);}
+function setOB(d){['ob1','ob5','ob25','ob100'].forEach(id=>{const b=document.getElementById(id);if(b)b.disabled=d;});}
+function showRank(r){document.getElementById('rkE').textContent=r.ico;document.getElementById('rkNm').textContent=r.n;document.getElementById('rkDs').textContent=r.d;document.getElementById('rkOv').classList.add('on');makeCard();if(navigator.vibrate)navigator.vibrate([80,40,120,40,200]);}
+function closeRk(){document.getElementById('rkOv').classList.remove('on');}
+
+// ══════════ FLOATERS ══════════
+function spawnF(txt,color,x,y,size){
+  const el=document.createElement('div');el.className='floater';
+  const r=(Math.random()-.5)*22;
+  el.style.cssText=`left:${x}px;top:${y}px;font-size:${size}px;color:${color};--r:${r}deg;`;
+  el.textContent=txt;document.body.appendChild(el);setTimeout(()=>el.remove(),2000);
+}
+
+// ══════════ FEED ══════════
+const buildFeed=()=>{const l=document.getElementById('fList');l.innerHTML='';INIT_F.forEach(([u,a,t])=>l.appendChild(mkRow(u,a,t,false)));};
+function addFeed(u,a,f){const l=document.getElementById('fList');if(!l)return;l.insertBefore(mkRow(u,a,'now',f),l.firstChild);while(l.children.length>5)l.removeChild(l.lastChild);}
+function mkRow(u,a,t,f){const el=document.createElement('div');el.className='fr'+(f?' new':'');el.innerHTML=`<span class="fu">${u}</span><span class="fa">${a}</span><span class="ft">${t}</span>`;return el;}
+const fakeFeed=()=>{const u=FAKE_U[~~(Math.random()*FAKE_U.length)];const fn=FAKE_E[~~(Math.random()*FAKE_E.length)];const a=[1,5,25,100][~~(Math.random()*4)];addFeed(u,fn(a),true);};
+
+// ══════════ SOLANA ══════════
+async function findATA(o,m){const[a]=await solanaWeb3.PublicKey.findProgramAddress([o.toBuffer(),TPGM.toBuffer(),m.toBuffer()],APGM);return a;}
+function mkTx(s,d,o,amt){const data=new Uint8Array(9);data[0]=3;new DataView(data.buffer).setBigUint64(1,amt,true);return new solanaWeb3.TransactionInstruction({keys:[{pubkey:s,isSigner:false,isWritable:true},{pubkey:d,isSigner:false,isWritable:true},{pubkey:o,isSigner:true,isWritable:false}],programId:TPGM,data});}
+function mkCrATA(p,a,o,m){return new solanaWeb3.TransactionInstruction({keys:[{pubkey:p,isSigner:true,isWritable:true},{pubkey:a,isSigner:false,isWritable:true},{pubkey:o,isSigner:false,isWritable:false},{pubkey:m,isSigner:false,isWritable:false},{pubkey:solanaWeb3.SystemProgram.programId,isSigner:false,isWritable:false},{pubkey:TPGM,isSigner:false,isWritable:false},{pubkey:new solanaWeb3.PublicKey('SysvarRent111111111111111111111111111111111'),isSigner:false,isWritable:false}],programId:APGM,data:Buffer.alloc(0)});}
+
+// ══════════ BOOT ══════════
+buildFeed();
+setInterval(fakeFeed,5800);
+</script>
+</body>
+</html>
